@@ -17,9 +17,9 @@ onnx_converter
 
 :py:data:`construct_origin_graph`
 """""""""""""""
-首先调用了:py:data:`_construct_raw_graph`方法，在该方法中，遍历了输入ONNX模型的index（i）和node（n）。在每个node上，如果该node没有名字，那么将用index的值作为它的名字。接下来，用:py:data:`_assert_node`验证该node的操作类型是否支持。然后，如果node的操作类型属于Merge类型(多个输入)，那么将遍历它的所有前继节点，将它们和它们对应的edge加入graph中。否则（单个输入），仅将该节点的前继节点和对应的edge加入graph中。接下来，检查节点的第一个输出（`succ_node`），将和对应的edge其加入到graph中。最后，使用parser对graph再次整理。
+首先调用了:py:data:`_construct_raw_graph` 方法，在该方法中，遍历了输入ONNX模型的index（i）和node（n）。在每个node上，如果该node没有名字，那么将用index的值作为它的名字。接下来，用:py:data:`_assert_node` 验证该node的操作类型是否支持。然后，如果node的操作类型属于Merge类型(多个输入)，那么将遍历它的所有前继节点，将它们和它们对应的edge加入graph中。否则（单个输入），仅将该节点的前继节点和对应的edge加入graph中。接下来，检查节点的第一个输出（`succ_node` ），将和对应的edge其加入到graph中。最后，使用parser对graph再次整理。
 
-接下来调用了:py:data:`raw_graph.connect_concats`方法，对concat类型的node进行配置。首先，将遍历所有graph中的所有节点，寻找concat类型的node。找到concat类型的node后，将搜索这些node所对应的目标节点，并调用:py:data:`_config_concat`方法进行配置。配置过程中,将遍历所有Conv烈性节点,配置其concat_slot和block_boxes。完成所有目标节点的配置后，将去搜索下一个节点。最后，调用了:py:data:`_format_block_boxes`，遍历查找所有Conv类型节点，为其添加block_boxes。
+接下来调用了:py:data:`raw_graph.connect_concats` 方法，对concat类型的node进行配置。首先，将遍历所有graph中的所有节点，寻找concat类型的node。找到concat类型的node后，将搜索这些node所对应的目标节点，并调用:py:data:`_config_concat` 方法进行配置。配置过程中,将遍历所有Conv烈性节点,配置其`concat_slot` 和`block_boxes` 。完成所有目标节点的配置后，将去搜索下一个节点。最后，调用了:py:data:`_format_block_boxes` ，遍历查找所有Conv类型节点，为其添加`block_boxes` 。
 
 
 
