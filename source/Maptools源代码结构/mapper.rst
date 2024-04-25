@@ -25,6 +25,7 @@ onnx_converter
 
 :py:data:`construct_host_graph`
 """""""""""""""
+这一步仅调用了origin_graph.dispatch_graph方法。该方法将原graph导入，然后进行深度优先搜索（DFS）算法
 
 :py:data:`construct_device_graph` 
 """""""""""""""
