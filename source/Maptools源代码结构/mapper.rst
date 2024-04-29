@@ -2,6 +2,16 @@ mapper
 ^^^^^^^^^^^^^^
 'mapper'为 |name| 核心代码，包含'graph_shaper' 'operator_parser' 'onnx_converter' 'tile_mapper' 'noc_mapper'五个子文件
 
+**计划修改：**
+
+1. onnx_conveter:
+
+# // TODO need to provide the size info (W x H) of the intermidiate data (size info is restored after onnx-sim)
+# // TODO need to support multi-style paddings in inception (there is no Pads any more in onnx-simplified model)
+TODO need to support reduce mean in mnasnet
+TODO need to support sigmoid in efficientnet
+TODO need to support global average pool and gemm layer
+
 
 graph_shaper
 --------------
